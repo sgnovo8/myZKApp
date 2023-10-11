@@ -9,4 +9,4 @@ import { Field, SmartContract, state, State, method } from 'o1js';
  *
  * This file is safe to delete and replace with your own contract.
  */
-export class AgeVerifier1 extends SmartContract {}
+export class AgeVerifier extends SmartContract {}
