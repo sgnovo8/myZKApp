@@ -1,4 +1,4 @@
-import { Field, SmartContract, state, State, method } from 'o1js';
+import { Field, SmartContract1, state, State, method } from 'o1js';
 
 /**
  * Basic Example
@@ -9,4 +9,4 @@ import { Field, SmartContract, state, State, method } from 'o1js';
  *
  * This file is safe to delete and replace with your own contract.
  */
-export class Add extends SmartContract {}
+export class Add extends SmartContract1 {}
