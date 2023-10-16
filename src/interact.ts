@@ -14,7 +14,7 @@
  */
 import { Mina, PrivateKey } from 'o1js';
 import fs from 'fs/promises';
-import { Add } from './Add.js';
+import { Add } from './AgeVerifier.js';
 
 // check command line arg
 let deployAlias = process.argv[2];
