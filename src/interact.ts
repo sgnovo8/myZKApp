@@ -1,5 +1,5 @@
 /**
- * This script can be used to interact with the Add contract, after deploying it.
+ * This script can be used to interact with the Add (now ) contract, after deploying it.
  *
  * We call the update() method on the contract, create a proof and send it to the chain.
  * The endpoint that we interact with is read from your config.json.
@@ -12,9 +12,9 @@
  * Build the project: `$ npm run build`
  * Run with node:     `$ node build/src/interact.js <deployAlias>`.
  */
-import { Mina, PrivateKey } from 'o1js';
+import { Field, Mina, PrivateKey } from 'o1js';
 import fs from 'fs/promises';
-import { Add } from './AgeVerifier.js';
+import { AgeVerifier } from './AgeVerifier.js';
 
 // check command line arg
 let deployAlias = process.argv[2];
@@ -58,17 +58,17 @@ const fee = Number(config.fee) * 1e9; // in nanomina (1 billion = 1.0 mina)
 Mina.setActiveInstance(Network);
 let feepayerAddress = feepayerKey.toPublicKey();
 let zkAppAddress = zkAppKey.toPublicKey();
-let zkApp = new Add(zkAppAddress);
+let zkApp = new AgeVerifier(zkAppAddress);
 
 let sentTx;
 // compile the contract to create prover keys
 console.log('compile the contract...');
-await Add.compile();
+await AgeVerifier.compile();
 try {
   // call update() and send transaction
   console.log('build transaction and create proof...');
   let tx = await Mina.transaction({ sender: feepayerAddress, fee }, () => {
-    zkApp.update();
+    zkApp.verifyAge(Field(18), Field(16));
   });
   await tx.prove();
   console.log('send transaction...');

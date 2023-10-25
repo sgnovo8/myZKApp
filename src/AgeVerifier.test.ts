@@ -57,7 +57,7 @@ describe('AgeVerifier', () => {
     expect(num).toEqual(Field(18));
   });
 
-  it('correctly updates the num state on the `AgeVerifier` smart contract', async () => {
+  it('correctly fails the person is younger than the age limit', async () => {
     await localDeploy();
 
     // update transaction
